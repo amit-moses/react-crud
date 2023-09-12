@@ -89,8 +89,7 @@ function Products() {
 
           <div className="form-floating mb-3">
             <input
-                        id="inp3"
-
+              id="inp3"
               value={pr_stock}
               type="number"
               className="form-control"
@@ -101,8 +100,7 @@ function Products() {
 
           <div className="form-floating mb-3">
             <input
-                        id="inp4"
-
+              id="inp4"
               value={pr_cat}
               type="number"
               className="form-control"
@@ -120,22 +118,22 @@ function Products() {
         </form>
       </div>
       <div className="col-md-6">
-      <table className="table table-striped" border="1">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">product name</th>
-            <th scope="col">product price</th>
-            <th scope="col">product stock</th>
-            <th scope="col">product category</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody id="tablebody">
-          {productsList.map((product, index) => (
-            <Product key={index} product={product} onDelete={refresh_func} />
-          ))}
-        </tbody>
-      </table>
+        <table className="table table-striped" border="1">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">product name</th>
+              <th scope="col">product price</th>
+              <th scope="col">product stock</th>
+              <th scope="col">product category</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="tablebody">
+            {productsList.map((product, index) => (
+              <Product key={index} product={product} onDelete={refresh_func} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
