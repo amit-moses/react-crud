@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../App.css";
 import Product from "./Product";
 import axios from "axios";
 
@@ -11,6 +10,7 @@ function Products() {
   const [pr_price, setProductPrice] = useState(0);
   const [pr_stock, setProductStock] = useState(0);
   const [pr_cat, setProductCat] = useState(1);
+  const [pr_image, setProductImage] = useState("");
   const [refresh, setRefresh] = useState(0);
   const [filter, setFilter] = useState(0);
 
@@ -38,6 +38,7 @@ function Products() {
       price: pr_price,
       stock: pr_stock,
       category: pr_cat,
+      image: pr_image
     };
     axios
       .post("http://127.0.0.1:8000/products/", product_to_add)
@@ -48,6 +49,7 @@ function Products() {
         setProductPrice(0);
         setProductCat(1);
         setProductStock(0);
+        setProductImage("")
         refresh_func()
       });
   }
@@ -135,6 +137,17 @@ function Products() {
             <label htmlFor="inp4">category</label>
           </div>
 
+          <div className="form-floating mb-3">
+            <input
+              id="inp5"
+              value={pr_image}
+              type="text"
+              className="form-control"
+              onChange={(e) => setProductImage(e.target.value)}
+            ></input>
+            <label htmlFor="inp5">product image url</label>
+          </div>
+
           <br />
           <input
             className="btn btn-primary"
@@ -152,6 +165,7 @@ function Products() {
               <th scope="col">price</th>
               <th scope="col">stock</th>
               <th scope="col">product category</th>
+              <th scope="col">url image</th>
               <th scope="col"></th>
             </tr>
           </thead>
