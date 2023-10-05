@@ -41,9 +41,9 @@ function ProductCard({ product, in_cart, on_cart }) {
           <div className="text-center">
             {in_cart? 
             <>
-            <button style={{marginRight: "15px"}} onClick={() => update_cart(1)} className="btn btn-outline-dark mt-auto">+</button>
+            <button style={{marginRight: "10px"}} onClick={() => update_cart(1)} className="btn btn-outline-dark mt-auto">+</button>
             {in_cart}
-            <button style={{marginLeft: "15px"}} onClick={() => update_cart(-1)} className="btn btn-outline-dark mt-auto">-</button>
+            <button style={{marginLeft: "10px"}} onClick={() => update_cart(-1)} className="btn btn-outline-dark mt-auto">-</button>
             </>
             : 
             <button onClick={() => update_cart(1)} className="btn btn-outline-dark mt-auto">Add to cart</button>}
