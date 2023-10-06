@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-function Product({ product, refresh, category }) {
+function Product({ product, refresh, category, api_url }) {
   const [editor, setEditor] = useState(false);
   const [ed_name, setEditorName] = useState(product.name);
   const [ed_price, setEditorPrice] = useState(product.price);
@@ -21,14 +21,14 @@ function Product({ product, refresh, category }) {
         image: ed_url
       };
       axios
-        .put(`http://127.0.0.1:8000/product/${product.id}/`, product_to_update)
+        .put(api_url + "product/" + product.id + "/", product_to_update)
         .then(function (response) {
           const mok = !editor;
           setEditor(mok);
           refresh()
         });
     } else {
-      console.log(`http://127.0.0.1:8000/product/${product.id}/`);
+      console.log(api_url + "product/" + product.id + "/");
       const mok = !editor;
       setEditor(mok);
     }
@@ -40,7 +40,7 @@ function Product({ product, refresh, category }) {
     return "err"
   }
   function del_func() {
-    axios.delete("http://127.0.0.1:8000/product/" + product.id).then((res) => {
+    axios.delete(api_url + "product/" + product.id + "/").then((res) => {
       refresh();
     });
   }

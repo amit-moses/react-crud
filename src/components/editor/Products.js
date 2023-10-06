@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import axios from "axios";
 
-function Products() {
+function Products({api_url}) {
   const [productsList, setProductsList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
 
@@ -14,16 +14,18 @@ function Products() {
   const [refresh, setRefresh] = useState(0);
   const [filter, setFilter] = useState(0);
 
+
   function filter_cat(){
     if(parseInt(filter)) return productsList.filter((item)=>parseInt(item.category) === parseInt(filter));
     else return productsList;
   }
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/category/").then((res) => {
+    const api = "http://127.0.0.1:8000/"
+    axios.get(api + "category/").then((res) => {
       setCategoryList(res.data);
     });
 
-    axios.get("http://127.0.0.1:8000/products/").then((res) => {
+    axios.get(api + "products/").then((res) => {
       setProductsList(res.data);
     });
   }, [refresh]);
@@ -41,7 +43,7 @@ function Products() {
       image: pr_image
     };
     axios
-      .post("http://127.0.0.1:8000/products/", product_to_add)
+      .post(api_url + "products/", product_to_add)
       .then((res) => {
         console.log(res.data);
         setProductsList([...productsList, product_to_add]);
@@ -171,7 +173,7 @@ function Products() {
           </thead>
           <tbody id="tablebody">
             {filter_cat().map((product, index) => (
-              <Product key={index} category={categoryList} product={product} refresh={refresh_func} />
+              <Product api_url={api_url} key={index} category={categoryList} product={product} refresh={refresh_func} />
             ))}
           </tbody>
         </table>

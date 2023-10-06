@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-function CartRow({cartitem, on_cart}) {
+function CartRow({cartitem, on_cart, api_url}) {
     function update_cart(to_change){
         const urlm = Cookies.get("cart_id")?Cookies.get("cart_id"):'0'
         const product_to_add = {
@@ -9,7 +9,7 @@ function CartRow({cartitem, on_cart}) {
           quantity: to_change,
         };
         axios
-          .put("http://127.0.0.1:8000/cart/"+urlm+"/", product_to_add)
+          .put(api_url + "cart/"+urlm+"/", product_to_add)
           .then((res) => {
             Cookies.set('cart_id', res.data.id, { expires: 7 });
             on_cart()

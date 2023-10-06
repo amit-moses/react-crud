@@ -1,4 +1,4 @@
-function Navbar({cartitems, categories, filter_func, myfilter}) {
+function Navbar({cartitems, categories, filter_func, myfilter, search}) {
     function get_cat_name(){
         if(myfilter){
             const query = categories.filter((cat) => parseInt(myfilter) === parseInt(cat.id))
@@ -12,7 +12,7 @@ function Navbar({cartitems, categories, filter_func, myfilter}) {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container px-4 px-lg-5">
           <a className="navbar-brand" href="#!">
-            Start Bootstrap
+            React Shop
           </a>
           <button
             className="navbar-toggler"
@@ -27,6 +27,7 @@ function Navbar({cartitems, categories, filter_func, myfilter}) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <input id="code" placeholder="search" onChange={(e) => search(e.target.value)} />
               <li className="nav-item dropdown">
                 <button
                   className="nav-link dropdown-toggle"
