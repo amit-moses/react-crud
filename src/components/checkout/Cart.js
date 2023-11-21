@@ -44,7 +44,7 @@ function Cart({ refresh_cart, cartList, total_to_pay, api_url }) {
                 />
               ))}
             </div>
-            {cartList.length ? <Total price={total_to_pay} /> : ""}
+            {cartList.length ? <Total price={total_to_pay} api_url={api_url} refresh={refresh_cart} /> : ""}
           </div>
         </div>
       </div>
