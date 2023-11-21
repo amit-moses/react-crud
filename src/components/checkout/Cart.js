@@ -4,7 +4,7 @@ import CartRow from "./CartRow";
 import Total from "./Total";
 import Cookies from "js-cookie";
 
-function Cart({ refresh_cart, cartList, total_to_pay, api_url }) {
+function Cart({ refresh_cart, cartList, total_to_pay, api_url, cart_data }) {
   function clear_cart(){
     axios.delete(api_url + "cart/" + Cookies.get("cart_id") + "/").then((res) => {
       refresh_cart();
@@ -13,7 +13,7 @@ function Cart({ refresh_cart, cartList, total_to_pay, api_url }) {
   }
   return (
     <>
-      <NavbarCart />
+      <NavbarCart id={"mymodal"}/>
       <div className="mycart">
         <div className="">
           <div className="row">
@@ -44,7 +44,7 @@ function Cart({ refresh_cart, cartList, total_to_pay, api_url }) {
                 />
               ))}
             </div>
-            {cartList.length ? <Total price={total_to_pay} api_url={api_url} refresh={refresh_cart} /> : ""}
+            {cartList.length ? <Total price={cart_data.total} api_url={api_url} refresh={refresh_cart} cart_data={cart_data} /> : ""}
           </div>
         </div>
       </div>

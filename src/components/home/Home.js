@@ -3,7 +3,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import Navbar from "../navbar/Navbar";
 
-function Home({refresh_cart, cartList, api_url}) {
+function Home({refresh_cart, cartList, api_url, cart_data}) {
   const [productsList, setProductsList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [filter, setFilter] = useState(0);
@@ -15,6 +15,7 @@ function Home({refresh_cart, cartList, api_url}) {
     else return to_return;
   }
   useEffect(() => {
+    
     const api = "http://127.0.0.1:8000/"
     axios.get(api + "category/").then((res) => {
       setCategoryList(res.data);
