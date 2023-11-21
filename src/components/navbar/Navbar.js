@@ -27,7 +27,7 @@ function Navbar({cartitems, categories, filter_func, myfilter, search}) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <input id="code" placeholder="search" onChange={(e) => search(e.target.value)} />
+            <input className="form-control" id="code" placeholder="search" onChange={(e) => search(e.target.value)} />
               <li className="nav-item dropdown">
                 <button
                   className="nav-link dropdown-toggle"
