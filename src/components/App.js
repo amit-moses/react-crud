@@ -3,12 +3,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
-import Edit from "./components/editor/Edit";
-import Home from "./components/home/Home";
+import Edit from "./editor/Edit";
+import Home from "./home/Home";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
-import Cart from "./components/checkout/Cart";
+import Cart from "./checkout/Cart";
 
 function App() {
   const [cartData, setCartData] = useState([]);
