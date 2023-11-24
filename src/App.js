@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
+
 import Edit from "./components/editor/Edit";
 import Home from "./components/home/Home";
 import { useEffect, useState } from "react";
@@ -28,9 +29,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route basename="/edit" path="/edit" element={<Edit api_url={api_url} />} />
-        <Route basename="/mycart" path="/mycart" element={<Cart api_url={api_url} set_cart={setMyCart} cartList={cartList} total_to_pay={totalPay} cart_data={cartData} />} />
-        <Route basename="/*" path="/*" element={<Home set_cart={setMyCart} api_url={api_url} cartList={cartList} />} />
+        <Route path="/" element={<Home set_cart={setMyCart} api_url={api_url} cartList={cartList} />} />
+        <Route path="/edit" element={<Edit api_url={api_url} />} />
+        <Route path="/mycart" element={<Cart api_url={api_url} set_cart={setMyCart} cartList={cartList} total_to_pay={totalPay} cart_data={cartData} />} />
       </Routes>
     </BrowserRouter>
   );
