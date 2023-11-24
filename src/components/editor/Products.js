@@ -20,7 +20,7 @@ function Products({api_url}) {
     else return productsList;
   }
   useEffect(() => {
-    const api = "http://127.0.0.1:8000/"
+    const api = "https://shop-rest.onrender.com/"
     axios.get(api + "category/").then((res) => {
       setCategoryList(res.data);
     });

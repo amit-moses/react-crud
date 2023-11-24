@@ -12,7 +12,7 @@ function App() {
   const [refresh, setRefresh] = useState(0);
   const [totalPay, setTotalPay] = useState(0);
 
-  const api_url = "http://127.0.0.1:8000/"
+  const api_url = "https://shop-rest.onrender.com/"
   const refresh_func = () => {
     setRefresh(refresh + 1);
   };

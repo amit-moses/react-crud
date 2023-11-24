@@ -16,7 +16,7 @@ function Home({refresh_cart, cartList, api_url, cart_data}) {
   }
   useEffect(() => {
     
-    const api = "http://127.0.0.1:8000/"
+    const api = "https://shop-rest.onrender.com/"
     axios.get(api + "category/").then((res) => {
       setCategoryList(res.data);
     });
