@@ -1,23 +1,33 @@
 import { useState } from "react";
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import Loader from "../Loader";
 
 
-function Total({price, api_url, refresh, cart_data}) {
+function Total({set_cart, api_url, cart_data}) {
   const [ed_promo, setPromo] = useState("");
   const [errorMsg, setError] = useState();
+  const [loader, setLoader] = useState(false);
+
+  // const [promoMsg, setPromoMsg] = useState();
 
   function update_promo(promo){
-    setError()
+    setError();
+    setLoader(Boolean(promo));
     axios.post(api_url + "updatepromo/" + Cookies.get("cart_id") + "/", {promocode: promo})
     .then((res) => {
-        if(res.data.res){
-          refresh();}
-        else {
-          setError(ed_promo);
-          console.log('not');
+      if(promo !== -1 ){
+        if(! res.data.promocode){setError(promo);}
+        else if(cart_data.promocode){
+          if(cart_data.promocode.code !== promo ){setError(promo);}
         }
+        
+      }
+      if(promo !== -1){
         setPromo("");
+      }
+      set_cart(res.data);
+      setLoader(false);
     });
     
   }
@@ -42,7 +52,9 @@ function Total({price, api_url, refresh, cart_data}) {
             <button onClick={() => update_promo(ed_promo)} className="btn btn-outline-dark rounded-0" type="button">update</button>
           </div>
         </div>
-
+        {loader? <div className="text-center">
+          <Loader isLoad={true} inCart={''} loaderSize={10}/>
+        </div>: ""}
         {errorMsg? <div className="alert alert-danger" role="alert">
           {errorMsg} is not availble!
         </div>: ""}

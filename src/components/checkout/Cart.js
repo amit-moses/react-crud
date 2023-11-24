@@ -4,10 +4,11 @@ import CartRow from "./CartRow";
 import Total from "./Total";
 import Cookies from "js-cookie";
 
-function Cart({ refresh_cart, cartList, total_to_pay, api_url, cart_data }) {
+function Cart({ cartList, set_cart, api_url, cart_data }) {
   function clear_cart(){
     axios.delete(api_url + "cart/" + Cookies.get("cart_id") + "/").then((res) => {
-      refresh_cart();
+      console.log(res.data)
+      set_cart(res.data)
       window.history.back();
     });
   }
@@ -40,11 +41,11 @@ function Cart({ refresh_cart, cartList, total_to_pay, api_url, cart_data }) {
                 api_url={api_url}
                   key={index}
                   cartitem={cartitem}
-                  on_cart={refresh_cart}
+                  set_cart={set_cart}
                 />
               ))}
             </div>
-            {cartList.length ? <Total price={cart_data.total} api_url={api_url} refresh={refresh_cart} cart_data={cart_data} /> : ""}
+            {cartList.length ? <Total price={cart_data.total} api_url={api_url} set_cart={set_cart} cart_data={cart_data} /> : ""}
           </div>
         </div>
       </div>

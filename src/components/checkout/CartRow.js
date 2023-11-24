@@ -1,18 +1,23 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import Loader from "../Loader";
+import { useState } from "react";
 
-function CartRow({cartitem, on_cart, api_url}) {
+function CartRow({cartitem, set_cart, api_url}) {
+  const [loader, setLoader] = useState(false);
     function update_cart(to_change){
         const urlm = Cookies.get("cart_id")?Cookies.get("cart_id"):'0'
         const product_to_add = {
           product: cartitem.product.id,
           quantity: to_change,
         };
+        setLoader(true);
         axios
           .put(api_url + "cart/"+urlm+"/", product_to_add)
           .then((res) => {
             Cookies.set('cart_id', res.data.id, { expires: 7 });
-            on_cart()
+            set_cart(res.data);
+            setLoader(false);
           });
       }
       const totalfor = cartitem.product.price * cartitem.quantity;
@@ -32,8 +37,8 @@ function CartRow({cartitem, on_cart, api_url}) {
         </div>
 
         <div className="col">
-        <button style={{marginRight: "7px"}} onClick={() => update_cart(1)} className="btn btn-outline-dark mt-auto text-center">+</button>
-            {cartitem.quantity}
+        <button style={{marginRight: "7px", visibility: cartitem.quantity < cartitem.product.stock? "visible": "hidden"}} onClick={() => update_cart(1)} className="btn btn-outline-dark mt-auto text-center">+</button>
+            <Loader isLoad={loader} inCart={cartitem.quantity} loaderSize={10}/>
             <button style={{marginLeft: "7px"}} onClick={() => update_cart(-1)} className="btn btn-outline-dark mt-auto text-center">-</button>
         </div>
 

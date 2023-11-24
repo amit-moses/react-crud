@@ -9,7 +9,8 @@ function Navbar({cartitems, categories, filter_func, myfilter, search}) {
     }
   return (
     <>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav style={{marginTop: "10px"}} className="navbar navbar-expand-lg "></nav>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container px-4 px-lg-5">
           <a className="navbar-brand" href="#!">
             Shop1
