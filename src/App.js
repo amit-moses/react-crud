@@ -33,7 +33,7 @@ function App() {
         <Route path="/" element={<Home api_url={api_url} refresh_cart={refresh_func} cartList={cartList} />} />
         <Route path="/edit" element={<Edit api_url={api_url} />} />
         <Route path="/mycart" element={<Cart api_url={api_url} refresh_cart={refresh_func} cartList={cartList} total_to_pay={totalPay} cart_data={cartData} />} />
-        <Route path="*" element={<div>no page</div>} />
+        <Route path="/*" element={<div>no page</div>} />
       </Routes>
     </BrowserRouter>
   );
