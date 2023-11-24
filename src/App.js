@@ -1,5 +1,7 @@
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 import Edit from "./components/editor/Edit";
 import Home from "./components/home/Home";
@@ -28,7 +30,7 @@ function App() {
   }, []);
   
   return (
-    <Router>
+    <Router basename='/'>
       <Routes>
           <Route path="/" element={<Home set_cart={setMyCart} api_url={api_url} cartList={cartList} />} />
           <Route path="/edit" element={<Edit api_url={api_url} />} />
