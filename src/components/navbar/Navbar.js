@@ -12,7 +12,7 @@ function Navbar({cartitems, categories, filter_func, myfilter, search}) {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container px-4 px-lg-5">
           <a className="navbar-brand" href="#!">
-            Shop
+            Shop1
           </a>
           <button
             className="navbar-toggler"
